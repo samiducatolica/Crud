@@ -5,5 +5,7 @@ public abstract class Pedido {
         this.costo = costo;
     }
 
+    public abstract boolean valida() ;
+
     public abstract void paga();
 }

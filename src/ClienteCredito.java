@@ -1,6 +1,9 @@
-public class ClienteCredito implements ICliente{
+public class ClienteCredito extends Cliente {
+    private int id;
+    private String nombre;
+    private String correoElectronico;
     @Override
-    public void generaTransaccion() {
-
+    protected Pedido creaPedido(double costo) {
+        return new PedidoCredito(costo);
     }
 }
