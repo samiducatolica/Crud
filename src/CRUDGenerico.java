@@ -21,7 +21,28 @@ public class CRUDGenerico<T> {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }else {
+        }else if (entidad instanceof ClienteCredito){
+            String sql = "Insert Into parciales.cliente(nombre,correo) VALUES(?,?)";
+            try(PreparedStatement preparedStatement = conexion.prepareStatement(sql)){
+                preparedStatement.setString(1,((ClienteCredito) entidad).getNombre());
+                preparedStatement.setString(2,((ClienteCredito) entidad).getCorreoElectronico());
+                preparedStatement.executeUpdate();
+                System.out.println("Cliente creado con éxito");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }else if (entidad instanceof PedidoCredito) {
+            String sql = "Insert Into parciales.pedido(idcliente,costo) VALUES(?,?)";
+            try(PreparedStatement preparedStatement = conexion.prepareStatement(sql)){
+                preparedStatement.setInt(1,((PedidoCredito) entidad).idCliente);
+                preparedStatement.setDouble(2,((PedidoCredito) entidad).costo);
+                preparedStatement.executeUpdate();
+                System.out.println("Cliente creado con éxito");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        else {
             System.out.println("Otra entidad");
         }
     }
@@ -61,7 +82,25 @@ public class CRUDGenerico<T> {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }else {
+        } else if (entidad instanceof ClienteCredito) {
+            String sql = "UPDATE parciales.cliente SET nombre =?,correo=? WHERE id=?";
+            try(PreparedStatement preparedStatement = conexion.prepareStatement(sql)){
+                preparedStatement.setString(1,((ClienteCredito) entidad).getNombre());
+                preparedStatement.setString(2,((ClienteCredito) entidad).getCorreoElectronico());
+                preparedStatement.setInt(3,((ClienteCredito) entidad).getId());
+                int filas = preparedStatement.executeUpdate();
+                if (filas >0){
+                    System.out.println("Cliente actualziado con éxito");
+                }else{
+                    System.out.println("Cliente no encontrado o no se realizo ninguna actualziacion");
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else if (entidad instanceof PedidoCredito) {
+
+        } else {
             System.out.println("Otra entidad");
         }
     }
@@ -81,7 +120,21 @@ public class CRUDGenerico<T> {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }else {
+        } else if (entidad instanceof ClienteCredito) {
+            String sql = "DELETE FROM parciales.cliente WHERE id=?";
+            try(PreparedStatement preparedStatement = conexion.prepareStatement(sql)){
+                preparedStatement.setInt(1,((ClienteCredito) entidad).getId());
+                int filas = preparedStatement.executeUpdate();
+                if (filas >0){
+                    System.out.println("Cliente eliminado con éxito");
+                }else{
+                    System.out.println("Cliente no encontrado o no se realizó ninguna eliminación");
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
             System.out.println("Otra entidad");
         }
     }

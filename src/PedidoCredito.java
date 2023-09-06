@@ -11,6 +11,8 @@ public class PedidoCredito extends Pedido{
 
     @Override
     public void paga() {
-        System.out.println("El pago del pedido a gredito de: "+costo+" se ha realizado.");
+        CRUDGenerico<Pedido> crudPedido = new CRUDGenerico<>();
+        crudPedido.crear(this );
+        System.out.println("El pago del pedido a credito de: "+costo+" se ha realizado.");
     }
 }

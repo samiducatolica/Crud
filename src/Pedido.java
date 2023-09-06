@@ -1,6 +1,6 @@
 public abstract class Pedido {
     public  double costo;
-
+    public int idCliente;
     public Pedido(double costo) {
         this.costo = costo;
     }
