@@ -8,4 +8,20 @@ public abstract class Pedido {
     public abstract boolean valida() ;
 
     public abstract void paga();
+
+    public double getCosto() {
+        return costo;
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public void setCosto(double costo) {
+        this.costo = costo;
+    }
 }

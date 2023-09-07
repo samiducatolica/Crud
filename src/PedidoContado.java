@@ -10,6 +10,8 @@ public class PedidoContado extends Pedido{
 
     @Override
     public void paga() {
+        CRUDGenerico<Pedido> crudPedido = new CRUDGenerico<>();
+        crudPedido.crear(this );
         System.out.println("El pago del pedido de contado de: "+costo+" se ha realizado.");
     }
 

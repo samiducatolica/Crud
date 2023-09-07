@@ -15,4 +15,5 @@ public class PedidoCredito extends Pedido{
         crudPedido.crear(this );
         System.out.println("El pago del pedido a credito de: "+costo+" se ha realizado.");
     }
+
 }

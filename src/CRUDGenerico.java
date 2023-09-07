@@ -32,12 +32,23 @@ public class CRUDGenerico<T> {
                 e.printStackTrace();
             }
         }else if (entidad instanceof PedidoCredito) {
+            System.out.println(((PedidoCredito) entidad).getIdCliente());
             String sql = "Insert Into parciales.pedido(idcliente,costo) VALUES(?,?)";
             try(PreparedStatement preparedStatement = conexion.prepareStatement(sql)){
-                preparedStatement.setInt(1,((PedidoCredito) entidad).idCliente);
-                preparedStatement.setDouble(2,((PedidoCredito) entidad).costo);
+                preparedStatement.setInt(1,(((PedidoCredito) entidad).getIdCliente()));
+                preparedStatement.setDouble(2,((PedidoCredito) entidad).getCosto());
                 preparedStatement.executeUpdate();
-                System.out.println("Cliente creado con éxito");
+                System.out.println("Pedido credito almacenado con éxito");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }else if (entidad instanceof PedidoContado) {
+            String sql = "Insert Into parciales.pedido(idcliente,costo) VALUES(?,?)";
+            try(PreparedStatement preparedStatement = conexion.prepareStatement(sql)){
+                preparedStatement.setInt(1,(((PedidoContado) entidad).getIdCliente()));
+                preparedStatement.setDouble(2,((PedidoContado) entidad).getCosto());
+                preparedStatement.executeUpdate();
+                System.out.println("Pedido contado almacenado con éxito");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
